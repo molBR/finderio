@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  finderio:
+    environment:
+      - FINDERIO_REGION=
+      - FINDERIO_ID=
+      - FINDERIO_SECRET=
+    build: .
+    ports:
+      - "8080:8080"
+  
