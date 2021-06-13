@@ -117,6 +117,11 @@ As this moment, finderio only works queying <b>HASH KEY</b> and can only filter 
 
 It is suggested to use Insomnia for querying, but feel free to use the graphQL client you want :)
 
+The endpoint for localhost should be:
+```
+localhost:8080/graphql
+```
+
 For insomnia the query is as follows:
 
 ![GRAPHQL EXAMPLE 1](./images/graphQLexp1.png)
