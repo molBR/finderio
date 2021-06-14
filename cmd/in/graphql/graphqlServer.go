@@ -1,35 +1,34 @@
 package in_graphql
 
 import (
-	"net/http"
-	"log"
-	"io/ioutil"
+	"encoding/json"
 	"finderio/cmd/service"
 	"finderio/cmd/setup"
-	"encoding/json"
-
+	"io/ioutil"
+	"log"
+	"net/http"
 )
-type errorResponse struct  {
+
+type errorResponse struct {
 	message string
 }
 
-func CreateServer (confSetup *setup.ConfSetup)  {
-
+func CreateServer(confSetup *setup.ConfSetup) {
 
 	http.HandleFunc("/graphql", func(w http.ResponseWriter, r *http.Request) {
 		encoder := json.NewEncoder(w)
 		body, _ := ioutil.ReadAll(r.Body)
 		jsonString := string(body)
 		result, err := service.Service(jsonString, confSetup)
-		if(err != nil){
+		if err != nil {
 			w.WriteHeader(http.StatusNotFound)
 			eJson := make(map[string]interface{})
-			eJson["ERROR_MESSAGE"]=err.Error()
+			eJson["ERROR_MESSAGE"] = err.Error()
 			encoder.Encode(eJson)
-		}else{
+		} else {
 			encoder.Encode(result)
 		}
-		return 
+		return
 
 	})
 	log.Println("Server running on PORT: 8080")
