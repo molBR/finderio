@@ -46,6 +46,7 @@ func sessionSetup() *ConfSetup {
 
 
 func MainSetup() *ConfSetup{
+	
 	envVarSetup()
 	confSetup:=sessionSetup()
 	log.Println("End of setup")
