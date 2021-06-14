@@ -21,9 +21,11 @@ func envVarSetup() {
 	REGION:=os.Getenv("FINDERIO_REGION")
 	ID:=os.Getenv("FINDERIO_ID")
 	SECRET:=os.Getenv("FINDERIO_SECRET")
-	os.Setenv("AWS_REGION", REGION)
-	os.Setenv("AWS_ACCESS_KEY_ID", ID)
-	os.Setenv("AWS_SECRET_ACCESS_KEY", SECRET)
+	if (REGION != "" && ID != "" && SECRET != "") {
+		os.Setenv("AWS_REGION", REGION)
+		os.Setenv("AWS_ACCESS_KEY_ID", ID)
+		os.Setenv("AWS_SECRET_ACCESS_KEY", SECRET)
+	}
 }
 
 func sessionSetup() *ConfSetup {
@@ -44,7 +46,6 @@ func sessionSetup() *ConfSetup {
 
 
 func MainSetup() *ConfSetup{
-
 	envVarSetup()
 	confSetup:=sessionSetup()
 	log.Println("End of setup")
