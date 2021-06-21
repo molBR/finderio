@@ -22,6 +22,8 @@ func envVarSetup() {
 		os.Setenv("AWS_REGION", REGION)
 		os.Setenv("AWS_ACCESS_KEY_ID", ID)
 		os.Setenv("AWS_SECRET_ACCESS_KEY", SECRET)
+	}else {
+		log.Println("WARNING: AWS SDK Client does not have proper credentials")
 	}
 }
 
